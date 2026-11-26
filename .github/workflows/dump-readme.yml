@@ -1,0 +1,16 @@
+name: dump-readme
+on:
+  workflow_dispatch:
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dev
+      - name: Dump README base64
+        run: |
+          echo "README_B64_BEGIN"
+          base64 -w 100 README.md
+          echo "README_B64_END"
+          wc -c README.md
