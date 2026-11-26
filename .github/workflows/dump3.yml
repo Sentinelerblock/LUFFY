@@ -1,0 +1,14 @@
+name: dump3
+"on": [workflow_dispatch]
+permissions:
+  contents: write
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name Transform
+        run: python3 transform_dev.py
