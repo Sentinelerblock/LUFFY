@@ -1,5 +1,5 @@
 name: dump-readme
-"on":
+on:
   workflow_dispatch:
 jobs:
   dump:
@@ -8,8 +8,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: dev
-      - name Scan TODOs
+      - name Dump README base64
         run: |
-          echo ALL_TODOS_BEGIN
-          grep -RIn --include='*.py' TODO . || true
-          echo ALL_TODOS_END
+          echo "README_B64_BEGIN"
+          base64 -w 100 README.md
+          echo "README_B64_END"
+          wc -c README.md
