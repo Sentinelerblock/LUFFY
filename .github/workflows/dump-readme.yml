@@ -8,8 +8,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: dev
-          fetch-depth: 0
-      - name Transform README
-        run: git fetch origin main --depth=1 && git show FETCH_HEAD:transform_readme.py > transform_readme.py && python3 transform_readme.py
-      - name Show README diff
-        run: git diff -- README.md
+      - name Scan TODOs
+        run: |
+          echo ALL_TODOS_BEGIN
+          grep -RIn --include='*.py' TODO . || true
+          echo ALL_TODOS_END
